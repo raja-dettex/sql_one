@@ -1,7 +1,4 @@
 #V2
-hello
-world
-create table foo (col1 int, col2 string);
 select col1, col2 from foo;
 create table foo (col1 int, col2 string);
 insert into foo values 'hello', 'world';
@@ -48,3 +45,57 @@ inset into User values 3,'rajdip';
 insret into User values 3, 'rajdip';
 insert into User values 3, 'rajdip';
 select name from User where id != 2;
+create table User (id int, name string);
+insert into User values 1,'raja';
+insert into User values 2,'neha';
+insert into User values 3, 'rajdip';
+select name from User;
+select id, name from User where id = 1;
+select id, name from User where id != 1;
+create table User( id int , name string);
+CREATE TABLE User(id int, name string);
+create table User (id int, name string);
+insert into User values 1,'raja';
+insert into User values 2,'neha';
+insert into User values 3, 'rajdip';
+insert into User values 4,'hello';
+select id, name from User;
+create table User (id int, name string);
+insert into User values 1,'raja';
+create table User (id int, name string);
+insert into User values 1,'raja';
+create table User (id int, name string)l
+create table User (id int, name string);
+insert into User values 1, 'raja';
+select id, name from User;
+select name from User;
+create table Person (id int, name string);
+insert into Person values 1, 'raja';
+insert into Person values 2,'neha';
+insert into Person values 3,'hello';
+select name from Person;
+select name from Person where id != 1;
+create table User (id int, name string);
+insert into User values 1, 'raja';
+insert into User values 2, 'meeta';
+select name from User;
+insert into User values 3, 'neha';
+select name from User;
+create table User (id int, name string);
+insert into User values 1,'raja';
+select name from User;
+insert into User values 3,'rajdip';
+select name from User where id != 1;
+clear
+select name from User;
+select name from User where id != 1;
+select name from User where id = 1;
+select name from User where name = 1;
+select name from User where name = raja;
+create table Person ( name string, color string);
+create table Person (name string, color string);
+insert into Person values 'roxy','blue';
+select name, color from Person;
+select * from User;
+select name from User;
+ clear 

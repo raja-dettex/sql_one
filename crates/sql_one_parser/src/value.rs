@@ -15,10 +15,40 @@ use serde::{Deserialize, Serialize};
 
 use crate::parser::{peek_then_cut, Parse, ParseResult, RawSpan};
 
-#[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize, Display)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash,  Display, Ord, PartialOrd)]
 pub enum Value {
     Number(BigDecimal), // TODO: should we make literals for ints vs floats?
     String(String),
+}
+
+impl Serialize for Value {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer {
+        match self {
+            Value::Number(big_d) => {
+                let string_value = big_d.to_string();
+                serializer.serialize_str(&string_value)
+            },
+            Value::String(str) => serializer.serialize_str(str),
+        }
+    }
+}
+
+
+impl<'de> Deserialize<'de> for Value {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        let value_str = String::deserialize(deserializer)?;
+        if let Some(big_int) = BigDecimal::parse_bytes(value_str.as_bytes(), 10) {
+            return Ok(Value::Number(big_int));
+        }
+        // Try to parse as a string
+        Ok(Value::String(value_str))
+        // Add deserialization for other variants if needed
+    }
 }
 
 impl Value { 
